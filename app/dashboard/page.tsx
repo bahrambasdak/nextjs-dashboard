@@ -1,3 +1,19 @@
-export default function Page() {
-  return <p>Dashboard Page</p>;
+import { createClient } from '@/app/utils/supabase/server'
+import { cookies } from 'next/headers'
+
+export default async function Page() {
+  const cookieStore = await cookies()
+  const supabase = createClient(cookieStore)
+
+  const { data: todos } = await supabase.from('todos').select()
+  console.log(todos,'todossssss',supabase);
+  
+
+  return (
+    <ul>
+      {todos?.map((todo) => (
+        <li key={todo.id}>{todo.name}</li>
+      ))}
+    </ul>
+  )
 }
