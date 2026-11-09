@@ -1,7 +1,9 @@
 packages:
   - .
 allowBuilds:
+  '@prisma/engines': false
   bcrypt: false
+  prisma: false
   sharp: false
 minimumReleaseAge: 2880
 onlyBuiltDependencies:
